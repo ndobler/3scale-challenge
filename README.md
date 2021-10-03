@@ -21,18 +21,32 @@ http://sso-rh-sso.apps.cluster-kc2df.kc2df.sandbox790.opentlc.com/auth/admin/use
 22c1738b-c84b-47dd-8b49-113a4599fd93
 ```
 
-access token: 
+toolbox_token (scope account management api, read & write)
 ```
 d196db0cb8ba10747060eff9e86875f11998d139798af21e983bb101a2ffe4dd
 ```
 
+### GIT GOGS
+
+http://gogs.apps.cluster-kc2df.kc2df.sandbox790.opentlc.com/user/login
+
+ESTO NO ME FUNCIONA!!! No puedo entrar al GIT para importar mi repositorio. Supongo que podría decirle a jenkns que escanee el repositorio directamente desde github.
+
+
 #### Ejecuto en consola:
 
 ```
+oc login https://api.cluster-kc2df.kc2df.sandbox790.opentlc.com:6443 -p openshift -u user10
+
  3scale remote add 3scale-onprem "https://d196db0cb8ba10747060eff9e86875f11998d139798af21e983bb101a2ffe4dd@user10-admin.apps.cluster-kc2df.kc2df.sandbox790.opentlc.com/" -k
 
 oc create secret generic 3scale-toolbox -n user10 --from-file="/home/user/.3scalerc.yaml"
+```
+| NAME | TYPE | DATA | AGE |
+|------|-----|--|--|
+|3scale-toolbox| Opaque|1|6h44m|
 
+```
 oc login https://api.cluster-kc2df.kc2df.sandbox790.opentlc.com:6443 -p openshift -u user10
 ```
 
