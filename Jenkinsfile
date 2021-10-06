@@ -13,6 +13,7 @@ node() {
   }
 
   stage("Deploy API in Prod") {
+    echo "Deploying API"
     // Prepare
     service = toolbox.prepareThreescaleService(
         openapi: [filename: "librarycore-API.yaml"],
@@ -32,12 +33,15 @@ node() {
             [ name: "my-test-app", description: "This is used for tests", plan: "test", account: params.DEVELOPER_ACCOUNT_ID ]
         ],
         applicationPlans: [
-          [ systemName: "test", name: "Test", defaultPlan: true, published: true ]
+          [ systemName: "basic", name: "Test", defaultPlan: true, published: true ]
         ]
     )
 
+    echo "Got Service instance object"
+
     // Import OpenAPI
     service.importOpenAPI()
+
     echo "Service with system_name ${service.environment.targetSystemName} created !"
 
     // Create an Application Plan
